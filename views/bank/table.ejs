@@ -1,0 +1,43 @@
+<table class="table" id="table1">
+  <thead>
+    <tr>
+      <th width="5%">No.</th>
+      <th>Nama Pemiliki Rekening</th>
+      <th>Nama Bank</th>
+      <th>Nomor Rekening</th>
+      <th>Gambar</th>
+      <th width="15%">Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(let i = 0 ; i < banks.length; i++ ) {%>
+    <tr>
+      <td><%= i+1 %></td>
+      <td><%= banks[i].owner %></td>
+      <td><%= banks[i].name %></td>
+      <td><%= banks[i].bankNumber %></td>
+      <td>
+        <img
+          src="/images/<%= banks[i].image %>"
+          width="100"
+          class="img-thumbnail"
+          alt=""
+        />
+      </td>
+      <td>
+        <a
+          href="/bank/edit/<%= banks[i]._id %>"
+          class="btn btn-sm btn-warning mt-1 ml-1"
+          >Edit</a
+        >
+        <form
+          action="/bank/delete/<%= banks[i]._id %>?_method=DELETE"
+          method="POST"
+        >
+          <button class="btn btn-sm btn-danger mt-1 ml-1">Hapus</button>
+        </form>
+      </td>
+    </tr>
+    <%}%>
+  </tbody>
+</table>

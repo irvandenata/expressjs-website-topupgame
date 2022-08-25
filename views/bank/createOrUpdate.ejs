@@ -1,0 +1,101 @@
+<div class="page-heading">
+  <h3><%-type%> Bank</h3>
+</div>
+<div class="page-content">
+  <section class="row">
+    <div class="col-12 col-lg-12">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <form
+                enctype="multipart/form-data"
+                class="form form-vertical"
+                action="<%- action %>"
+                method="POST"
+              >
+                <input
+                  type="hidden"
+                  name="id"
+                  value="<% if (typeof bank != 'undefined') { %><%= bank._id %><% } %>"
+                />
+                <div class="form-body">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="first-name-vertical">Nama Bank</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="name"
+                          value="<% if (typeof bank != 'undefined') { %><%= bank.name %><% } %>"
+                          required
+                          placeholder="Nama Bank"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="first-name-vertical"
+                          >Nama Pemilik Rekening</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="owner"
+                          value="<% if (typeof bank != 'undefined') { %><%= bank.owner %><% } %>"
+                          required
+                          placeholder="Nama Pemilik Rekening"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="first-name-vertical">Nomor Rekening</label>
+                        <input
+                          type="number"
+                          min="0"
+                          class="form-control"
+                          name="bankNumber"
+                          value="<% if (typeof bank != 'undefined') { %><%= bank.bankNumber %><% } %>"
+                          required
+                          placeholder="Nomor Rekening"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="first-name-vertical">Logo Bank</label>
+                        <input
+                          type="file"
+                          name="image"
+                          id="image"
+                          class="form-control"
+                        />
+                        <br />
+                        <img
+                          src="<% if (typeof bank != 'undefined') { %>/images/<%= bank.image %><% } %>"
+                          width="20%"
+                          id="preview"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-end">
+                      <button
+                        type="submit"
+                        class="btn btn-primary me-1 mb-1 change-page"
+                      >
+                        Simpan
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

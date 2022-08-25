@@ -1,0 +1,71 @@
+<div class="page-heading">
+  <h3><%-type%> Jenis Pembayaran</h3>
+</div>
+<div class="page-content">
+  <section class="row">
+    <div class="col-12 col-lg-12">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <form
+                 enctype="multipart/form-data"
+                class="form form-vertical"
+                action="<%- action %>"
+                method="POST"
+              >
+                <input
+                  type="hidden"
+                  name="id"
+                  value="<% if (typeof payment != 'undefined') { %><%= payment._id %><% } %>"
+                />
+                <div class="form-body">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="first-name-vertical"
+                          >Jenis Pembayaran</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="type"
+                          value="<% if (typeof payment != 'undefined') { %><%= payment.type %><% } %>"
+                          required
+                          placeholder="Nama Jenis Pembayaran"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="first-name-vertical">Bank</label>
+                        <select
+                          class="choices form-select"
+                          multiple="multiple"
+                          name="banks[]"
+                          required
+                          
+                        >
+                         <% banks.forEach((bank)=>{%>
+                          <option value="<%= bank._id %>" <% if (typeof payment != 'undefined' && payment.banks.includes(bank._id)) { %> selected <% } %> >
+                            <%= bank.name %> - <%= bank.owner %> ( <%= bank.bankNumber %> ) 
+                          </option>
+                          <% })%>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-end">
+                      <button type="submit" class="btn btn-primary me-1 mb-1">
+                        Simpan
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

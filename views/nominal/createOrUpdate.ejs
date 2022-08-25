@@ -1,0 +1,74 @@
+<div class="page-heading">
+  <h3><%-type%> Nominal</h3>
+</div>
+<div class="page-content">
+  <section class="row">
+    <div class="col-12 col-lg-12">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <form
+                class="form form-vertical"
+                action="<%- action %>"
+                method="POST"
+              >
+                <input
+                  type="hidden"
+                  name="id"
+                  value="<% if (typeof nominal != 'undefined') { %><%= nominal._id %><% } %>"
+                />
+                <div class="form-body">
+                  <div class="row">
+                    <div class="col-12">
+                    
+                      <div class="form-group">
+                        <label for="first-name-vertical">Nama Koin</label>
+                        <select class="choices form-select" name="name">
+                          <option value="Gold" <% if (typeof nominal != 'undefined' && nominal.coinName == 'Gold') { %> selected <% } %> >Gold</option>
+                          <option value="Diamond" <% if (typeof nominal != 'undefined' && nominal.coinName == 'Diamond') { %> selected <% } %>>Diamond</option>
+                          <option value="Jewel" <% if (typeof nominal != 'undefined' && nominal.coinName == 'Jewel') { %> selected <% } %>>Jewel</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="first-name-vertical">Jumlah Koin</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="quantity"
+                          value="<% if (typeof nominal != 'undefined') { %><%= nominal.coinQuantity %><% } %>"
+                          required
+                          placeholder="Jumlah Koin"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="first-name-vertical">Harga</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="price"
+                          value="<% if (typeof nominal != 'undefined') { %><%= nominal.price %><% } %>"
+                          required
+                          placeholder="Harga Koin"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-end">
+                      <button type="submit" class="btn btn-primary me-1 mb-1">
+                        Simpan
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

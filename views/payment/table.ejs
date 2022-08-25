@@ -1,0 +1,54 @@
+<table class="table" id="table1">
+  <thead>
+    <tr>
+      <th width="5%">No.</th>
+      <th>Jenis Pembayaran</th>
+      <th>Bank</th>
+      <th>Status</th>
+      <th width="15%">Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(let i = 0 ; i < payments.length; i++ ) {%>
+    <tr>
+      <td><%= i+1 %></td>
+      <td><%= payments[i].type %></td>
+      <td>
+        <% payments[i].banks.forEach((item)=>{ %>
+        <div class="badge bg-warning text-start">
+          <%= item.name %> - <%= item.owner %>
+        </div>
+        <br />
+        <%}) %>
+      </td>
+      <td>
+        <% if(payments[i].status == 'Y'){ %>
+        <span class="badge bg-primary">Aktif</span>
+        <%} else {%>
+        <div class="badge bg-secondary">Non Aktif</div>
+        <%}%>
+      </td>
+      <td>
+        <a
+          href="/payment/change-status/<%= payments[i]._id %>"
+          class="btn btn-sm btn-primary mt-1 ml-1"
+        >
+          <% if(payments[i].status == 'N'){ %> Aktifkan <%} else {%> Non
+          Aktifkan <%}%></a
+        >
+        <a
+          href="/payment/edit/<%= payments[i]._id %>"
+          class="btn btn-sm btn-warning mt-1 ml-1"
+          >Edit</a
+        >
+        <form
+          action="/payment/delete/<%= payments[i]._id %>?_method=DELETE"
+          method="POST"
+        >
+          <button class="btn btn-sm btn-danger mt-1 ml-1">Hapus</button>
+        </form>
+      </td>
+    </tr>
+    <%}%>
+  </tbody>
+</table>

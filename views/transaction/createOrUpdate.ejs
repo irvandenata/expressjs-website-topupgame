@@ -1,0 +1,84 @@
+<div class="page-heading">
+  <h3><%-type%> Voucher</h3>
+</div>
+<div class="page-content">
+  <section class="row">
+    <div class="col-12 col-lg-12">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <form
+              enctype="multipart/form-data"
+                class="form form-vertical"
+                action="<%- action %>"
+                method="POST"
+              >
+                <input
+                  type="hidden"
+                  name="id"
+                  value="<% if (typeof voucher != 'undefined') { %><%= voucher._id %><% } %>"
+                />
+                <div class="form-body">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="first-name-vertical">Nama Voucher</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="name"
+                          value="<% if (typeof voucher != 'undefined') { %><%= voucher.name %><% } %>"
+                          required
+                          placeholder="Nama Voucher"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="first-name-vertical">Kategori</label>
+                        <select class="choices form-select" name="category" required>
+                          <% categories.forEach((category)=>{%>
+                          <option value="<%= category._id %>"  <% if (typeof voucher != 'undefined' && voucher.category == category._id ) { %> selected <% } %> >
+                            <%= category.name %>
+                          </option>
+                          <% })%>
+                        </select>
+                      </div>
+                    </div>
+                      <div class="col-12">
+                      <div class="form-group">
+                        <label for="first-name-vertical">Nominal</label>
+                        <select class="choices form-select" multiple="multiple" name="nominals[]" required>
+                          <% nominals.forEach((nominal)=>{%>
+                          <option value="<%= nominal._id %>" <% if (typeof voucher != 'undefined' && voucher.nominals.includes(nominal._id)) { %> selected <% } %> >
+                            <%= nominal.coinName %> - <%= nominal.coinQuantity %> - Rp.<%= nominal.coinQuantity  %> 
+                          </option>
+                          <% })%>
+                        </select>
+                      </div>
+                    </div>
+
+                     <div class="col-12">
+                      <div class="form-group">
+                        <label for="first-name-vertical">Thumbnail</label>
+                       <input type="file" name="image" id="image" class="form-control">
+                       <br>
+                       <img src="<% if (typeof voucher != 'undefined') { %>/images/<%= voucher.thumbnail %><% } %>" width="20%" id="preview" alt="">
+                      </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-end">
+                      <button type="submit" class="btn btn-primary me-1 mb-1">
+                        Simpan
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
